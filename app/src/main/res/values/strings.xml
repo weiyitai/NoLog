@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">去开屏广告</string>
+    <string name="xposed_description">去日志去开屏广告</string>
+</resources>
