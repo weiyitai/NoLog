@@ -17,8 +17,8 @@ public class QqMusicHook {
 
     void hook(ClassLoader loader) throws Exception {
 
-        Class<?> aClass = loader.loadClass("com.tencent.base.debug.Tracer");
-        Method trace = XposedHelpers.findMethodExact(aClass, "trace", int.class,
+        Class<?> tracer = loader.loadClass("com.tencent.base.debug.Tracer");
+        Method trace = XposedHelpers.findMethodExact(tracer, "trace", int.class,
                 Thread.class, long.class, String.class, String.class, Throwable.class);
         XposedBridge.hookMethod(trace, new XC_MethodReplacement() {
             @Override
