@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'bajin'
-            keyPassword 'bajin7818'
-            storeFile file('H:/sign/bajin.jks')
-            storePassword 'bajin7818'
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
         }
     }
     compileSdkVersion 28

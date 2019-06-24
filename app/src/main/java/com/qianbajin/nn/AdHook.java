@@ -19,8 +19,11 @@ public class AdHook implements IXposedHookLoadPackage {
         try {
             if (Constant.PKG_QQ_MUSIC.equals(packageName)) {
                 new QqMusicHook().hook(loader);
+            } else if (Constant.PKG_WEISHI.equals(packageName)) {
+                new TencentTracerHook().hook(loader);
+            } else if (Constant.PKG_NOW.equals(packageName)) {
+                new TencentTracerHook().hook(loader);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, packageName);
