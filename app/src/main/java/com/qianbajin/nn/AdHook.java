@@ -23,6 +23,8 @@ public class AdHook implements IXposedHookLoadPackage {
                 new TencentTracerHook().hook(loader);
             } else if (Constant.PKG_NOW.equals(packageName)) {
                 new TencentTracerHook().hook(loader);
+            }else if (Constant.PKG_EBUS.equals(packageName)) {
+                new EBusHook().hook(loader);
             }
         } catch (Exception e) {
             e.printStackTrace();
