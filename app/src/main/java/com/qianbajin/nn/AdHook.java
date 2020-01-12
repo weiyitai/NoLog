@@ -16,14 +16,19 @@ public class AdHook implements IXposedHookLoadPackage {
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         String packageName = lpparam.packageName;
         ClassLoader loader = lpparam.classLoader;
+        Util.setLoader(loader);
         try {
             if (Constant.PKG_QQ_MUSIC.equals(packageName)) {
                 new QqMusicHook().hook(loader);
+            } else if (Constant.PKG_WECHAT.equals(packageName)) {
+                new XLogHook().hook(loader);
+            } else if (Constant.PKG_MOBILEQQ.equals(packageName)) {
+                new QqHook().hook();
             } else if (Constant.PKG_WEISHI.equals(packageName)) {
                 new TencentTracerHook().hook(loader);
             } else if (Constant.PKG_NOW.equals(packageName)) {
                 new TencentTracerHook().hook(loader);
-            }else if (Constant.PKG_EBUS.equals(packageName)) {
+            } else if (Constant.PKG_EBUS.equals(packageName)) {
                 new EBusHook().hook(loader);
             }
         } catch (Exception e) {
