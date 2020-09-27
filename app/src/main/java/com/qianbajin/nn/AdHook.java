@@ -21,7 +21,7 @@ public class AdHook implements IXposedHookLoadPackage {
             if (Constant.PKG_QQ_MUSIC.equals(packageName)) {
                 new QqMusicHook().hook(loader);
             } else if (Constant.PKG_WECHAT.equals(packageName)) {
-                new XLogHook().hook(loader);
+                new XLogHook().hook();
             } else if (Constant.PKG_MOBILEQQ.equals(packageName)) {
                 new QqHook().hook();
             } else if (Constant.PKG_WEISHI.equals(packageName)) {

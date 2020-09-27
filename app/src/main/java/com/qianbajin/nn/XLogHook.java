@@ -19,7 +19,7 @@ import de.robv.android.xposed.XposedBridge;
  */
 public class XLogHook {
 
-    void hook(ClassLoader loader) {
+    void hook() {
         try {
             Class<?> Xlog = Util.getClassLoader().loadClass("com.tencent.mars.xlog.Xlog");
             XposedBridge.hookAllMethods(Xlog, "appenderOpen", new XC_MethodHook() {
