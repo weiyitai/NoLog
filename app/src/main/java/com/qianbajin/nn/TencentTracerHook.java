@@ -22,12 +22,7 @@ public class TencentTracerHook {
         Class<?> tracer = loader.loadClass("com.tencent.base.debug.Tracer");
         Method trace = XposedHelpers.findMethodExact(tracer, "trace", int.class,
                 Thread.class, long.class, String.class, String.class, Throwable.class);
-        XposedBridge.hookMethod(trace, new XC_MethodReplacement() {
-            @Override
-            protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                return null;
-            }
-        });
+        XposedBridge.hookMethod(trace, XC_MethodReplacement.DO_NOTHING);
     }
 
 }

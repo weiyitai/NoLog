@@ -12,6 +12,7 @@ class Constant {
     static final String PKG_WECHAT= "com.tencent.mm";
     static final String PKG_MOBILEQQ= "com.tencent.mobileqq";
     static final String PKG_EBUS= "zxzs.ppgj";
+    static final String PKG_FIND_DEVICE= "com.xiaomi.finddevice";
 
 
 }
