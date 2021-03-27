@@ -1,6 +1,8 @@
-package com.qianbajin.nn;
+package com.qianbajin.nn.h;
 
 import android.util.Log;
+
+import com.qianbajin.nn.Util;
 
 import java.lang.reflect.Method;
 

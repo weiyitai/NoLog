@@ -1,6 +1,8 @@
-package com.qianbajin.nn;
+package com.qianbajin.nn.h;
 
 import android.util.Log;
+
+import com.qianbajin.nn.Util;
 
 import java.lang.reflect.Field;
 
@@ -19,7 +21,7 @@ import de.robv.android.xposed.XposedBridge;
  */
 public class XLogHook {
 
-    void hook() {
+    public void hook() {
         try {
             Class<?> Xlog = Util.getClassLoader().loadClass("com.tencent.mars.xlog.Xlog");
             XposedBridge.hookAllMethods(Xlog, "appenderOpen", new XC_MethodHook() {
