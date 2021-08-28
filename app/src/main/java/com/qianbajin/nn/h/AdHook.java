@@ -43,6 +43,9 @@ public class AdHook implements IXposedHookLoadPackage {
                 case Constant.PKG_MIPAY_WALLET:
                     new MiPayHook().hook();
                     break;
+                case Constant.PKG_PIPIXIX:
+                    new HookPiPiXia().hook();
+                    break;
                 default:break;
             }
         } catch (Exception e) {

@@ -14,6 +14,7 @@ public class Constant {
     public static final String PKG_EBUS= "zxzs.ppgj";
     public static final String PKG_FIND_DEVICE= "com.xiaomi.finddevice";
     public static final String PKG_MIPAY_WALLET= "com.mipay.wallet";
+    public static final String PKG_PIPIXIX= "com.sup.android.superb";
 
 
 }
