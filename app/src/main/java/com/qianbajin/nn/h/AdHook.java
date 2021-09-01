@@ -46,6 +46,9 @@ public class AdHook implements IXposedHookLoadPackage {
                 case Constant.PKG_PIPIXIX:
                     new HookPiPiXia().hook();
                     break;
+                case Constant.PKG_KELE:
+                    new HookKeLe().hook();
+                    break;
                 default:break;
             }
         } catch (Exception e) {
