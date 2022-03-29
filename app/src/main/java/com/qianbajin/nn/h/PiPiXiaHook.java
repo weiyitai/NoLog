@@ -51,7 +51,6 @@ public class PiPiXiaHook {
                     Log.d(TAG, "param.args[0]:" + param.args[0]);
                     Activity activity = (Activity) XposedHelpers.getObjectField(param.thisObject, "activity");
                     if (activity != null) {
-                        param.setResult(null);
                         setColor(activity.getWindow(), Color.TRANSPARENT);
                     }
                 }
