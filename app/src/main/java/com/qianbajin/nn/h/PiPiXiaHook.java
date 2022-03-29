@@ -17,9 +17,9 @@ import de.robv.android.xposed.XposedHelpers;
  * @author qianbajin
  * @date at 2021/8/28 0028  10:26
  */
-public class HookPiPiXia {
+public class PiPiXiaHook {
 
-    private static final String TAG = HookPiPiXia.class.getSimpleName();
+    private static final String TAG = "PiPiXiaHook";
 
     private int mColor = Color.parseColor("#BAB3C1");
 
@@ -51,6 +51,7 @@ public class HookPiPiXia {
                     Log.d(TAG, "param.args[0]:" + param.args[0]);
                     Activity activity = (Activity) XposedHelpers.getObjectField(param.thisObject, "activity");
                     if (activity != null) {
+                        param.setResult(null);
                         setColor(activity.getWindow(), Color.TRANSPARENT);
                     }
                 }

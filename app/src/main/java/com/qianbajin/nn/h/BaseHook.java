@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
 /**
  * ----------------------
  * 代码千万行
@@ -48,6 +49,21 @@ abstract class BaseHook {
     void doNotThing(Class<?> aClass, Method method) {
         try {
             XposedBridge.hookMethod(method, XC_MethodReplacement.DO_NOTHING);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log(e);
+        }
+    }
+
+    /**
+     * 使方法不执行
+     *
+     * @param aClass 类名
+     * @param methodName 方法
+     */
+    void doNotThing(Class<?> aClass, String methodName) {
+        try {
+            XposedHelpers.findAndHookMethod(aClass, methodName, XC_MethodReplacement.DO_NOTHING);
         } catch (Exception e) {
             e.printStackTrace();
             log(e);

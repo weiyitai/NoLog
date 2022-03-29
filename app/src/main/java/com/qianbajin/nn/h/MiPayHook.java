@@ -6,8 +6,6 @@ import com.qianbajin.nn.Util;
 
 import java.lang.reflect.Method;
 
-import de.robv.android.xposed.XC_MethodReplacement;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 /**
  * ----------------------
@@ -16,20 +14,20 @@ import de.robv.android.xposed.XposedHelpers;
  * 代码不注释
  * 改bug两行泪
  * -----------------------
- *
  * @author qianbajin
  * @date at 2021/3/27 0027  22:47
  */
-public class MiPayHook {
+public class MiPayHook extends BaseHook {
 
-    private static final String TAG = MiPayHook.class.getSimpleName();
+    private static final String TAG = "MiPayHook";
 
+    @Override
     public void hook() {
         try {
             Class<?> HomePageFragment = Util.getClassLoader().loadClass("com.mipay.home.ui.HomePageFragment");
             Method a = XposedHelpers.findMethodExact(HomePageFragment, "a");
             Log.d(TAG, "a:" + a);
-            XposedBridge.hookMethod(a, XC_MethodReplacement.DO_NOTHING);
+            doNotThing(HomePageFragment, a);
         } catch (Exception e) {
             e.printStackTrace();
         }

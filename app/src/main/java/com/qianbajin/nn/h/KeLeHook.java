@@ -15,7 +15,7 @@ import de.robv.android.xposed.XposedHelpers;
  * @author qianbajin
  * @date at 2021/9/1 0001  22:46
  */
-public class HookKeLe {
+public class KeLeHook {
 
     public void hook() {
         Method onCreate = XposedHelpers.findMethodExact(Application.class, "onCreate");
