@@ -1,10 +1,12 @@
 package com.qianbajin.nn.h;
 
 import android.app.Activity;
+import android.app.AndroidAppHelper;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.qianbajin.nn.Util;
 
@@ -21,7 +23,7 @@ public class PiPiXiaHook {
 
     private static final String TAG = "PiPiXiaHook";
 
-    private int mColor = Color.parseColor("#BAB3C1");
+    private final int mColor = Color.parseColor("#BAB3C1");
 
     public void hook() {
         try {
@@ -31,9 +33,16 @@ public class PiPiXiaHook {
             Log.d(TAG, "changeStatusBarTopMargin:" + changeStatusBarTopMargin);
             Method modifyStatusBar = XposedHelpers.findMethodExact(StatusBarHelper, "modifyStatusBar", boolean.class);
             XposedBridge.hookMethod(modifyStatusBar, new XC_MethodHook() {
+                private long lastHook;
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
+                    long now = System.currentTimeMillis();
+                    if (now - lastHook < 300) {
+                        Toast.makeText(AndroidAppHelper.currentApplication(), "间隔太短", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    lastHook = now;
                     Object arg0 = param.args[0];
 //                    Log.d(TAG, "modifyStatusBar:" + param.thisObject + " " + arg0);
                     if (((boolean) arg0)) {
