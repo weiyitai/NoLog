@@ -56,3 +56,28 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     compileOnly 'de.robv.android.xposed:api:82'
 }
+
+afterEvaluate {
+    // for app test, copy the final aar to application libs
+    android.applicationVariants.all { variant ->
+        File outputFile = variant.outputs.first().outputFile
+        logger.quiet("+---" + variant.name + " -" + variant.name.capitalize())
+        if (variant.name == 'release') {
+            logger.quiet("----->>do copy apk")
+            copy {
+                logger.quiet("----->>do copy --->>" + outputFile)
+                from outputFile
+                into "../app/bak/"
+            }
+        }
+//        tasks.named("${variant.name.capitalize().toLowerCase()}").configure {
+//            doLast {
+//                copy {
+//                    from outputFile
+//                    into "../bak/"
+////                    rename outputFile.name, "fat-aar-final.aar"
+//                }
+//            }
+//        }
+    }
+}

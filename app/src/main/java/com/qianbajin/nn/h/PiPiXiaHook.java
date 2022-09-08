@@ -19,12 +19,13 @@ import de.robv.android.xposed.XposedHelpers;
  * @author qianbajin
  * @date at 2021/8/28 0028  10:26
  */
-public class PiPiXiaHook {
+public class PiPiXiaHook implements IHook {
 
     private static final String TAG = "PiPiXiaHook";
 
     private final int mColor = Color.parseColor("#BAB3C1");
 
+    @Override
     public void hook() {
         try {
             Class<?> StatusBarHelper = Util.getClassLoader().loadClass("com.sup.android.utils.StatusBarHelper");
@@ -46,6 +47,7 @@ public class PiPiXiaHook {
                     Object arg0 = param.args[0];
 //                    Log.d(TAG, "modifyStatusBar:" + param.thisObject + " " + arg0);
                     if (((boolean) arg0)) {
+                        Log.d(TAG, "modifyStatusBar");
                         param.setResult(null);
                         changeStatusBarTopMargin.invoke(param.thisObject, false);
                         Activity activity = (Activity) XposedHelpers.getObjectField(param.thisObject, "activity");
@@ -65,7 +67,7 @@ public class PiPiXiaHook {
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, Log.getStackTraceString(e));
         }
     }
 

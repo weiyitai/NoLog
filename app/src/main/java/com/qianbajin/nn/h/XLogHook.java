@@ -19,8 +19,9 @@ import de.robv.android.xposed.XposedBridge;
  * @author qianbajin
  * @date at 2020/1/11 0011  19:41
  */
-public class XLogHook {
+public class XLogHook implements IHook {
 
+    @Override
     public void hook() {
         try {
             Class<?> Xlog = Util.getClassLoader().loadClass("com.tencent.mars.xlog.Xlog");
@@ -29,7 +30,7 @@ public class XLogHook {
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     super.beforeHookedMethod(param);
                     Object arg = param.args[0];
-                    printObj(arg);
+                    // printObj(arg);
                     param.setResult(null);
                 }
             });

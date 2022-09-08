@@ -1,5 +1,7 @@
 package com.qianbajin.nn.h;
 
+import com.qianbajin.nn.Util;
+
 import java.lang.reflect.Method;
 
 import de.robv.android.xposed.XC_MethodReplacement;
@@ -18,10 +20,11 @@ import de.robv.android.xposed.XposedHelpers;
  */
 public class TencentTracerHook {
 
-    void hook(ClassLoader loader) throws Exception {
+    void hook() throws Exception {
+        ClassLoader loader = Util.getClassLoader();
         Class<?> tracer = loader.loadClass("com.tencent.base.debug.Tracer");
         Method trace = XposedHelpers.findMethodExact(tracer, "trace", int.class,
-                Thread.class, long.class, String.class, String.class, Throwable.class);
+            Thread.class, long.class, String.class, String.class, Throwable.class);
         XposedBridge.hookMethod(trace, XC_MethodReplacement.DO_NOTHING);
     }
 

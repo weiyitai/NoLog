@@ -20,3 +20,12 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keep class com.qianbajin.nn.h.AdHook{*;}
+
+#* 表示类名中的任意多个字符,不包括分隔符(.).
+#** 表示类名中的任意多个字符,包括分隔符(.).
+#*** 表示任意类型.
+#... 表示任意多个任意类型的参数.
+-keepclassmembers class com.qianbajin.nn.MainActivity{
+#    private *** saveData();
+     ** saveData();
+}

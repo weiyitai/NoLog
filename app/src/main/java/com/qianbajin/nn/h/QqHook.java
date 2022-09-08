@@ -14,7 +14,7 @@ package com.qianbajin.nn.h;
 public class QqHook extends BaseHook {
 
     @Override
-    void hook() {
+    public void hook() {
         // H:.nixiang.qq.com.tencent.mobileqq-8.2.6-1320-3834.classes-dex2jar.jar!.com.tencent.qphone.base.util.QLog.class addLogItem()
         doNotThingAll(loadClass("com.tencent.qphone.base.util.QLog"), "addLogItem");
     }

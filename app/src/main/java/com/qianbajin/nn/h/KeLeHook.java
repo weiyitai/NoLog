@@ -15,8 +15,9 @@ import de.robv.android.xposed.XposedHelpers;
  * @author qianbajin
  * @date at 2021/9/1 0001  22:46
  */
-public class KeLeHook {
+public class KeLeHook implements IHook {
 
+    @Override
     public void hook() {
         Method onCreate = XposedHelpers.findMethodExact(Application.class, "onCreate");
         XposedBridge.hookMethod(onCreate, new XC_MethodHook() {

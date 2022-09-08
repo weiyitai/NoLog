@@ -9,6 +9,7 @@ import java.lang.reflect.Method;
 import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
+
 /**
  * ----------------------
  * 代码千万行
@@ -20,7 +21,7 @@ import de.robv.android.xposed.XposedHelpers;
  * @author qianbajin
  * @date at 2020/1/12 0012  14:13
  */
-abstract class BaseHook {
+abstract class BaseHook implements IHook {
 
     private final String TAG = getClass().getSimpleName();
     private ClassLoader loader = Util.getClassLoader();
@@ -28,8 +29,6 @@ abstract class BaseHook {
     /**
      * hook 方法
      */
-    abstract void hook();
-
     Class<?> loadClass(String className) {
         try {
             return loader.loadClass(className);
@@ -58,7 +57,7 @@ abstract class BaseHook {
     /**
      * 使方法不执行
      *
-     * @param aClass 类名
+     * @param aClass     类名
      * @param methodName 方法
      */
     void doNotThing(Class<?> aClass, String methodName) {
